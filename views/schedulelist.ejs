@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/main.css" rel="stylesheet">
+</head>
+<body class="grey-bg">
+    <div>
+        <h1>날짜: <input type="date"> </h1>
+    </div>
+
+    <!-- 일정관리 -->
+    <div>    
+        <% for(let i=0;i<posts.length;i++) { %>
+            <div class="list-box">
+                <h4>
+                    <% if(posts[i].check == true) { %> 
+                        <h4>⭕</h4>
+                    <% } else { %>
+                        <h4>❌</h4>
+                    <% } %> 
+                    <%= posts[i].contents %>
+                </a>
+                <!-- 수정버튼 -->
+                <a href="/edit/<%=posts[i]._id%>">✍️</a>
+    
+                <!-- 삭제버튼 -->
+                <span class="delete" data-id="<%=posts[i]._id%>">🗑️</span>
+            </h4>
+            </div>
+        <% } %>
+    </div>
+</body>
+<script>
+    for(let i=0;i<'<%= posts.length %>'; i++) {
+        document.querySelectorAll('.delete')[i]
+        .addEventListener('click', function(e) {
+            fetch('delete?docid='+e.target.dataset.id, {method: "DELETE"})
+            .then((r) => r.text())
+            .then((r) => { e.target.parentElement.style.display = 'none'})
+        })
+    }
+</script>
+</html>

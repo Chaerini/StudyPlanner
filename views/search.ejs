@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/main.css" rel="stylesheet">
+</head>
+<body class="grey-bg">
+        <input class="search">
+        <button class="search-send">검색</button>
+        <script>
+            document.querySelector('.search-send').addEventListener('click', function () {
+                let inputWord = document.querySelector('.search').value
+                location.href = '/search?val=' + inputWord
+            })
+        </script>
+        <h4>검색 결과</h4>
+        <div class="white-bg">
+            <% for (let i=0; i< posts.length; i++) { %>
+                <div class="list-box">
+                    <h4><a href='/detail/<%=posts[i]._id %>'>
+                            <%= posts[i].contents %>
+                        </a> <a href="/edit/<%=posts[i]._id %>">✏️</a>
+                        <span class="delete" data-id="<%=posts[i]._id %>">🗑️</span>
+                    </h4>
+                    <p>
+                        <%= posts[i].contents %>
+                    </p>
+                </div>
+                <% } %>
+        </div>
+</body>
+<script>
+    for (let i = 0; i < '<%= posts.length %>'; i++) {
+        document.querySelectorAll('.delete')[i]
+            .addEventListener('click', function (e) {
+                fetch('/delete?docid=' + e.target.dataset.id, {
+                    method: "DELETE"
+                })
+                    .then((r) => r.text())
+                    .then((r) => { e.target.parentElement.parentElement.style.display = 'none' })
+            })
+    }
+</script>
+</html>

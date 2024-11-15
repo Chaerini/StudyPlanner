@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/main.css" rel="stylesheet">
+</head>
+
+<body class="mypage-grey-bg">
+    <div class="mypage-title">
+        <h1>MyPage</h1>
+    </div>
+    <div class="mypage-container">
+
+        <div class="mypage-top">
+            <form class="form-box" action="/mypage?_method=PUT" method="POST" enctype="multipart/form-data">
+                <div id="currentImageContainer">
+                    <h3>프로필 사진</h3>
+                    <img id="uploadedImage" class="uploaded-image" src="<%= userresult.imgurl %>">
+                    <img id="imagePreview" class="uploaded-image" style="display: none;"><br><br>
+                    <label for="fileInput" class="filelabel">프로필 사진 수정하기</label>
+                    <input type="file" name="fileInput" accept="image/*" id="fileInput" class="inputfile" style="display: none;">
+                </div>
+        </div>
+
+        <div class="mypage-bottom">
+            <div class="mypage-bottom-list">
+                <label for="nickname">닉네임</label>
+                <input type="text" value="<%= userresult.nickname %>" id="nickname" name="nickname">
+            </div>
+            <div class="mypage-bottom-list">
+                <label for="intro">소개글</label>
+                <textarea id="intro" name="intro" maxlength="50" placeholder="50자까지 가능"><%= userresult.introduce %></textarea>
+            </div>
+            <button type="submit">저장</button>
+            </form>
+        </div>
+    </div>
+
+
+
+</body>
+<script>
+    // 새로운 이미지 미리보기 설정
+    const fileInput = document.getElementById('fileInput');
+    const imagePreview = document.getElementById('imagePreview');
+    const uploadedImage = document.getElementById('uploadedImage');
+
+    fileInput.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block'; // 새 이미지 표시
+                uploadedImage.style.display = 'none';
+            }
+            reader.readAsDataURL(file);
+        } else {
+            imagePreview.style.display = 'none'; // 파일이 없으면 새 이미지 미리보기 숨기기
+            imagePreview.src = uploadedImage.src;
+        }
+    });
+</script>
+
+</html>

@@ -1,0 +1,286 @@
+.grey-bg {
+    background: #eee;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.list-bg {
+    width: 350px;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    margin-left: 50px;
+}
+
+.list-box {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    height: 60px;
+    align-items: center;
+}
+
+.list-box h4 {
+    margin: 0px;
+}
+
+/* .list-box a {
+    text-decoration: none;
+    color: inherit;
+} */
+
+.date {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.date .search {
+    width: 106px;
+    margin-right: 5px;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
+
+.goals {
+    text-align: center;
+    background: white;
+    border-radius: 20px;
+    width: 730px;
+    margin-left: 30px;
+}
+
+.profile {
+    text-align: center;
+}
+
+.profile-image {
+    width: 350px;
+    height: auto;
+}
+
+.profile-bottom {
+    text-align: end;
+    font-size: 15px;
+}
+
+.profile-bottom a {
+    text-decoration: none;
+    color: grey;
+}
+
+.profile h5 {
+    color: #aaa;
+}
+
+.title h2 {
+    text-align: center;
+    border: 1px solid olive;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.title-a {
+    text-align: right;
+}
+
+.title-a a {
+    text-decoration: none;
+    color: grey;
+}
+
+.box-title {
+    background: white;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 30px;
+    width: 600px;
+
+}
+
+.box-content {
+    background: white;
+    text-align: center;
+    border-radius: 20px;
+    padding: 20px;
+    width: 600px;
+    margin: auto;
+}
+
+.box-content input {
+    width: 500px;
+    height: 400px;
+    text-align: center;
+}
+
+.box-btn {
+    text-align: center;
+}
+
+.box-btn button {
+    width: inherit;
+    background: rgb(76, 103, 255);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 20px;
+    border: 0px;
+    padding: 20px;
+    margin-top: 30px;
+    width: 600px;
+}
+
+.form-box {
+    text-align: center;
+}
+
+/* login */
+.login-grey-bg {
+    display: flex;
+    background: #eee;
+    min-width: 100vh;
+    min-height: 100vh;
+    justify-content: center;
+}
+
+.login-list-bg {
+    display: flex;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    margin: auto;
+    justify-content: center;
+}
+
+.login-form-box {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-form-box input {
+    width: 500px;
+    height: 50px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid olive;
+}
+
+.login-form-box button {
+    width: 250px;
+    height: 40px;
+    margin: auto;
+    border-radius: 10px;
+    border: 1px solid olive;
+    background-color: rgb(245, 245, 239);
+}
+
+/* mypage */
+.mypage-grey-bg {
+    display: flex;
+    background: #eee;
+    min-width: 100vh;
+    min-height: 100vh;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center
+}
+
+.mypage-title {
+    width: 400px;
+    text-align: center;
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.mypage-container {
+    width: 400px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.mypage-top {
+    display: flex;
+    flex-direction: row;
+}
+
+.mypage-top .filelabel {
+    border: 1px solid rgb(77, 77, 77);
+    padding: 5px 15px;
+    border-radius: 10px;
+}
+
+.mypage-top .filelabel:hover {
+    background: rgb(77, 77, 77);
+    color: #fff;
+}
+
+.form-box .uploaded-image {
+    width: 350px;
+    border: 1px solid #ccc;
+}
+
+.mypage-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.mypage-bottom-list {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+}
+
+.mypage-bottom-list label {
+    margin: auto;
+    padding-right: 10px;
+}
+
+.mypage-bottom input {
+    border: 0px;
+    background: rgb(233, 233, 233);
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.mypage-bottom textarea {
+    border: 0px;
+    background: rgb(233, 233, 233);
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.mypage-bottom button {
+    margin-top: 20px;
+    border: 1px solid rgb(77, 77, 77);
+    padding: 5px 15px;
+    border-radius: 10px;
+}
+
+.mypage-bottom button:hover {
+    background: rgb(77, 77, 77);
+    color: #fff;
+}
+

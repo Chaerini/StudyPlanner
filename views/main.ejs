@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/main.css" rel="stylesheet">
+</head>
+
+<body class="grey-bg">
+    <div class="nav">
+        <div class="date">
+            <form action="/date" method="GET" class="form">
+                <input type="date" id="date" name="date">
+                <button type="submit" onclick="sendDate()">선택</button>
+            </form>
+            <input class="search"><button class="search-send">검색</button>
+        </div>
+        <div class="goals">
+            <h1>오늘의 한마디: 그럴 수 있지!</h1>
+        </div>
+        <!-- <div class="login-btn">
+            <button type="button" onclick="location.href='login'">로그인</button>
+        </div> -->
+    </div>
+
+    <div class="container">
+        <!-- MyPage -->
+        <div class="list-bg">
+            <div class="profile">
+                <img class="profile-image"
+                    src="<%= userresult && userresult ? userresult.imgurl : '/uploads/profile.png' %>">
+                <h3>
+                    <%= userresult && userresult ? userresult.nickname : '' %>
+                </h3>
+                <h5>
+                    <%= userresult && userresult.introduce ? userresult.introduce : '소개글을 적어주세요.' %>
+                </h5>
+                <div class="profile-bottom">
+                    <a href="/mypage">수정</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 일정관리 -->
+        <div class="list-bg">
+            <div class="title">
+                <div class="title-a"><a href="/write">글쓰기</a></div>
+                <h2>일정관리</h2>
+            </div>
+            <% for(let i=0;i<posts.length;i++) { %>
+                <div class="list-box">
+                    <h4>
+                        <% if(posts[i].check==true) { %>
+                            <h4 onclick="handleCheckClick('<%=posts[i]._id%>', this)">⭕</h4>
+                            <% } else { %>
+                                <h4 onclick="handleCheckClick('<%=posts[i]._id%>', this)">❌</h4>
+                                <% } %>
+                                    <%= posts[i].contents %>
+                                        </a>
+                                        <!-- 수정버튼 -->
+                                        <a href="/edit/<%=posts[i]._id%>">✍️</a>
+
+                                        <!-- 삭제버튼 -->
+                                        <span class="delete" data-id="<%=posts[i]._id%>">🗑️</span>
+                    </h4>
+                </div>
+                <% } %>
+        </div>
+
+        <!-- todo리스트 -->
+        <div class="list-bg">
+            <div class="title">
+                <div class="title-a"><a href="/todowrite">글쓰기</a></div>
+                <h2>Todo리스트</h2>
+            </div>
+            <% for(let i=0;i<todos.length;i++) { %>
+                <div class="list-box">
+                    <h4>
+                        <% if(todos[i].check==true) { %>
+                            <h4 onclick="handleCheckClick('<%=todos[i]._id%>', this)">⭕</h4>
+                            <% } else { %>
+                                <h4 onclick="handleCheckClick('<%=todos[i]._id%>', this)">❌</h4>
+                                <% } %>
+                                    <%= todos[i].todo %>
+                                        </a>
+                                        <!-- 수정버튼 -->
+                                        <a href="/edit/<%=todos[i]._id%>">✍️</a>
+
+                                        <!-- 삭제버튼 -->
+                                        <span class="delete2" data-id="<%=todos[i]._id%>">🗑️</span>
+                    </h4>
+                </div>
+                <% } %>
+        </div>
+
+    </div>
+</body>
+<script>
+    for (let i = 0; i < '<%= posts.length %>'; i++) {
+        document.querySelectorAll('.delete')[i]
+            .addEventListener('click', function (e) {
+                fetch('delete?docid=' + e.target.dataset.id, { method: "DELETE" })
+                    .then((r) => r.text())
+                    .then((r) => { e.target.parentElement.style.display = 'none' })
+            })
+    }
+
+    for (let i = 0; i < '<%= todos.length %>'; i++) {
+        document.querySelectorAll('.delete2')[i]
+            .addEventListener('click', function (e) {
+                fetch('delete?docid=' + e.target.dataset.id, { method: "DELETE" })
+                    .then((r) => r.text())
+                    .then((r) => { e.target.parentElement.style.display = 'none' })
+            })
+    }
+
+    // check 상태 변환
+    function handleCheckClick(id, element) {
+        fetch(`/check/${id}`, { method: "PUT" })
+            .then((r) => r.text())
+            .then((e) => {
+                // console.log("check: "+e)
+                if (e === "true") {
+                    element.innerText = "⭕"
+                } else {
+                    element.innerText = "❌"
+                }
+            })
+    }
+
+    // 선택한 날짜 반환
+    function sendDate() {
+        // 선택된 날짜를 가져오기
+        const date = document.getElementById('date').value;
+        const dateControl = document.querySelector('input[type="date"]')
+        dateControl.value = date
+
+        // 서버로 데이터를 전송하기 위해 Fetch API를 사용하여 GET 요청 보내기
+        fetch(`date/${date}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then((r) => r.text())
+            .then((e) => {
+                if (e === 'not result data') {
+                    const listBox = document.querySelector('.list-box');
+                    listBox.textContent = '데이터가 없습니다.';
+                } else {
+                    console.log("Response: " + e); // 반환된 응답을 콘솔에 출력
+                }
+
+            })
+    }
+
+    document.querySelector('.search-send').addEventListener('click', function() {
+        let inputWord = document.querySelector('.search').value
+        location.href = '/search?val=' + inputWord
+    })
+</script>
+
+</html>

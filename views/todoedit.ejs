@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/main.css" rel="stylesheet">
+</head>
+<body class="grey-bg">
+    <form class="form-box" action="/edit?_method=PUT" method="POST">
+        <div class="box-title">
+            <h2>Todo리스트 수정</h2>
+        </div>
+        <div class="box-content">
+            <input name="id" value="<%=result._id%>" style="display: none;">
+            <input name="content" value="<%=result.todo%>">
+        </div>
+        <div class="box-btn">
+            <button type="submit">수정</button>
+        </div>
+    </form>    
+</body>
+</html>
